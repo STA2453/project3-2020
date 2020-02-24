@@ -1,0 +1,91 @@
+---
+title: "Project 3"
+author: "Nathan Taback"
+date: "21/02/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE, cache=FALSE}
+source("login.R")
+```
+
+
+```{r, logpass, cache=FALSE}
+library(httr)
+numina_url <- "https://api.numina.co/graphql"
+
+loginq <- paste0("mutation {
+  logIn(
+      email:",login,",password:",pwd,") {
+    jwt {
+      token
+      exp
+    }
+  }
+}")
+
+
+mylogin <- POST(url = numina_url, body = list(query = loginq), encode = "json")
+
+#extract content from request
+res <- content(mylogin)
+#extract content from request
+res <- content(mylogin)
+
+# get token
+token <- res$data$logIn$jwt$token
+
+```
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(httr)
+numina_url <- "https://api.numina.co/graphql"
+
+
+loginquery <- "mutation {logIn(email:\"nathan.taback@utoronto.ca\",password:\"rynpej-tubdog-Byrxu7\") {jwt {token exp}}}"
+
+#make request
+mylogin <- POST(url = numina_url, body = list(query = loginquery), encode = "json")
+mylogin
+
+#extract content from request
+res <- content(mylogin)
+res
+# get token
+token <- res$data$logIn$jwt$token
+
+```
+
+## Sample Queries
+
+The following query requests all devices (sensors) serial number, and `rawId` that can be used as a unique way to identify the device in other requests.  
+
+```{r}
+query1 <- "query {devices { count edges {node {rawId name serialno }}}}"
+
+devices <- POST(url = numina_url, body = list(query = query1), add_headers(Authorization = token) , encode = "json")
+res <- content(devices)
+
+res$data$devices$edges
+```
+
+## Counts
+
+[Counts queries are used to get counts of objects that were observed in a given time interval.](https://developer.numina.co/#counts)
+
+The following query finds the number of pedestrians detected daily by the indoor sensor (the sensor that has name Streetscape - Sandbox) from 2019-12-01 to 2019-12-31. 
+
+
+```{r}
+query2 <- "query{feedCountMetrics(serialnos:[\"SWLSANDBOX1\"],startTime:\"2019-12-01T00:00:00\",endTime:\"2020-01-01T00:00:00\",objClasses:[\"pedestrian\"],timezone:\"America/New_York\",interval:\"24h\") {edges {node {serialno result objClass time}}}}"
+
+devices <- POST(url = numina_url, body = list(query = query2), add_headers(Authorization = token) , encode = "json")
+res <- content(devices)
+res$data$feedCountMetrics$edges[[1]]
+```
+
