@@ -1,2 +1,3 @@
-source activate example-environment
-conda env export --no-builds -f environment.yml
+name: example-environment
+channels:
+  - conda-forge
