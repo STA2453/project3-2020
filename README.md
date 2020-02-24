@@ -1,8 +1,12 @@
 # Project #3 - STA2453 (Winter 2020)
 
-The assignment and starter code for project #3 is available here.
+The assignment and starter code for project #3 is available in this repository.
 
-The full assignment is [available in the Jupyter notebook - STA2453_project3.ipynb](STA2453_project3-student.ipynb). R sample code to access the Numina API is [available in numina-student.Rmd](project3-R/numina-student.Rmd) (preview the file [here](project3-R/numina-student.md)), but is missing some of the assignment details.
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/STA2453/project3-2020/master?filepath=STA2453_project3-student.ipynb)
+
+- The full assignment is [available in the Jupyter notebook - STA2453_project3.ipynb](STA2453_project3-student.ipynb). 
+
+- R sample code to access the Numina API is [available in numina-student.Rmd](project3-R/numina-student.Rmd) (preview the file [here](project3-R/numina-student.md)), but is missing some of the assignment details.
 
 ## Mandatory Project Workflow
 
