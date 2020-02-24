@@ -2,7 +2,7 @@
 
 The assignment and starter code for project #3 is available here.
 
-The full assignment is [available in the Jupyter notebook - STA2453_project3.ipynb](STA2453_project3.ipynb). R sample code to access the Numina API is [available in numina-student.Rmd](project3-R/numina-student.Rmd) (preview the file [here](project3-R/numina-student.md)), but is missing some of the assignment details.
+The full assignment is [available in the Jupyter notebook - STA2453_project3.ipynb](STA2453_project3-ver1.ipynb). R sample code to access the Numina API is [available in numina-student.Rmd](project3-R/numina-student.Rmd) (preview the file [here](project3-R/numina-student.md)), but is missing some of the assignment details.
 
 ## Mandatory Project Workflow
 
