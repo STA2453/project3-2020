@@ -5,10 +5,7 @@ output:
     keep_md: TRUE
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(httr)
-```
+
 
 # STA2453 Project #3
 
@@ -87,7 +84,8 @@ The 307 data can be accessed using the [Numina API](https://developer.numina.co/
 
 The file `login.R` should contain:
 
-```{r, eval=FALSE}
+
+```r
 ## ---- logpass
 login <- "\"yourname@utoronto.ca\""
 pwd <- "\"yourpassword\""
@@ -99,22 +97,20 @@ pwd <- "\"yourpassword\""
 `login` and `pwd` can be included in an RMarkdown file by including the following chunk:
 
 ````markdown
-`r ''````{r, include=FALSE, cache=FALSE}
+```{r, include=FALSE, cache=FALSE}
 source("login.R")
 ```
 ````
 
 You can read more about including chunks from external source [here](https://bookdown.org/yihui/rmarkdown-cookbook/source-script.html).
 
-```{r, include=FALSE, cache=FALSE}
-source("login.R")
-```
+
 
 Now, you can authenticate and get a token.  Be sure to include the chunk label `logpass` in the chunk.  
 
 
 ````markdown
-`r ''````{r, logpass, echo=TRUE}
+```{r, logpass, echo=TRUE}
 numina_url <- "https://api.numina.co/graphql"
 
 loginq <- paste("mutation {
@@ -141,29 +137,7 @@ token <- res$data$logIn$jwt$token
 
 
 
-```{r, logpass, echo=FALSE}
-numina_url <- "https://api.numina.co/graphql"
 
-loginq <- paste("mutation {
-  logIn(
-      email:",login,",password:",pwd,") {
-    jwt {
-      token
-      exp
-    }
-  }
-}")
-
-
-mylogin <- POST(url = numina_url, body = list(query = loginq), encode = "json")
-
-#extract content from request
-res <- content(mylogin)
-#extract content from request
-res <- content(mylogin)
-# get token
-token <- res$data$logIn$jwt$token
-```
 
 
 
@@ -171,7 +145,8 @@ token <- res$data$logIn$jwt$token
 
 The following query requests all devices (sensors) serial number, and `rawId` that can be used as a unique way to identify the device in other requests.  
 
-```{r}
+
+```r
 query1 <- "query {
   devices {
     count
@@ -196,7 +171,8 @@ res <- content(devices)
 The following query finds the number of pedestrians detected daily by the indoor sensor (the sensor that has name Streetscape - Sandbox) from 2019-12-01 to 2019-12-31. 
 
 
-```{r}
+
+```r
 query2 <- "query {
   feedCountMetrics(
     serialnos:[\"SWLSANDBOX1\"],
@@ -225,7 +201,8 @@ res <- content(devices)
 
 [A heatmap is an array of values representing the spatial distribution of activity levels.](https://developer.numina.co/#heatmaps)
 
-```{r}
+
+```r
 query3 <- "query {
   feedHeatmaps(
     serialno: \"SWLSANDBOX1\",
