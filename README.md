@@ -21,5 +21,5 @@ The full assignment is [available in the Jupyter notebook - STA2453_project3.ipy
 - When the students agree on a resolution, they merge each pull request.  The teaching team can leave feedback on commits or pull requests if they are tagged in the comments. 
 
 
-- Both members of the team should contribute equally to building the web page and documentation.  It's not appropriate for one member to work on building the web page and the other to work on the documentation. 
+- All members of the team should contribute equally to building the web page and documentation.  It's not appropriate for one member to work on building the web page and the other to work on the documentation. 
 
